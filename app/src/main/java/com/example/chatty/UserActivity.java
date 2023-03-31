@@ -3,7 +3,6 @@ package com.example.chatty;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.example.chatty.databinding.ActivityUserBinding;
