@@ -10,4 +10,5 @@
     <color name="whiter">#E4FFFFFF</color>
     <color name="forTxt">#CE000000</color>
     <color name="backgroundInput">#758C8C8C</color>
+    <color name="dark_purple">#482F82</color>
 </resources>

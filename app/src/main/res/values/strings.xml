@@ -11,4 +11,5 @@
     <string name="confirmPassword">Подтверждение пароля</string>
     <string name="register">Зарегестрироваться</string>
     <string name="loginIn">Войти в аккаунт</string>
+    <string name="select_user">Выберите пользователя</string>
 </resources>

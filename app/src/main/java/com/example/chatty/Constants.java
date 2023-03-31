@@ -14,4 +14,5 @@ public class Constants {
     public static final String KEY_IS_LOGIN = "isSignedIn";
     public static final String USER_ID = "userId";
     public static final String KEY_IMAGE = "image";
+    public static final String KEY_FCM_TOKEN = "fcmToken";
 }
