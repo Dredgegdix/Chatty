@@ -67,7 +67,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s", "No user available"));
+        binding.textErrorMessage.setText(String.format("%s", "No user available1"));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
