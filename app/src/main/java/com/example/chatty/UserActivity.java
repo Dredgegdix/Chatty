@@ -2,6 +2,7 @@ package com.example.chatty;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,7 +13,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements UserListener{
 
     private  ActivityUserBinding binding;
     private Preference preference;
@@ -54,7 +55,7 @@ public class UserActivity extends AppCompatActivity {
                             }
                         }
                             if (users.size() > 0){
-                                UserAdapter userAdapter = new UserAdapter(users);
+                                UserAdapter userAdapter = new UserAdapter(users, this);
                                 binding.usersRecyclerView.setAdapter(userAdapter);
                                 binding.usersRecyclerView.setVisibility(View.VISIBLE);
                             }else{
@@ -67,7 +68,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void showErrorMessage(){
-        binding.textErrorMessage.setText(String.format("%s", "No user available1"));
+        binding.textErrorMessage.setText(String.format("%s", "No user available"));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
@@ -77,5 +78,13 @@ public class UserActivity extends AppCompatActivity {
         }else{
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public void onUserClicked(User user) {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, user);
+        startActivity(intent);
+        finish();
     }
 }
