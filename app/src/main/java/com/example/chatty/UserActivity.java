@@ -3,6 +3,7 @@ package com.example.chatty;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.example.chatty.databinding.ActivityUserBinding;
@@ -14,66 +15,67 @@ import java.util.List;
 
 public class UserActivity extends AppCompatActivity {
 
-    private ActivityUserBinding binding;
+    private  ActivityUserBinding binding;
     private Preference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_user);
+        setContentView(binding.getRoot());
         preference = new Preference(getApplicationContext());
-        setListener();
+        setListeners();
         getUsers();
     }
 
-    private void setListener() {
-        binding.backImage.setOnClickListener(view -> onBackPressed());
+    private void setListeners(){
+        binding.backImage.setOnClickListener(v -> onBackPressed());
     }
 
-    private void getUsers() {
-        load(true);
+    private void getUsers(){
+        loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         database.collection(Constants.KEY_USER_COLLECTION)
                 .get()
                 .addOnCompleteListener(task -> {
-                    load(false);
-                    String currentUserID = preference.getString(Constants.USER_ID);
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        List<User> userList = new ArrayList<>();
+                    loading(false);
+                    String currentUserId = preference.getString(Constants.USER_ID);
+                    if(task.isSuccessful() && task.getResult() != null){
+                        List<User> users = new ArrayList<>();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                            if (currentUserID.equals(queryDocumentSnapshot.getId())){
+                            if (currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue;
+                            } else {
+                                User user = new User();
+                                user.name = queryDocumentSnapshot.getString(Constants.KEY_NAME);
+                                user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
+                                user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
+                                user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
+                                users.add(user);
                             }
-                            User user = new User();
-                            user.username = queryDocumentSnapshot.getString(Constants.KEY_NAME);
-                            user.email = queryDocumentSnapshot.getString(Constants.KEY_EMAIL);
-                            user.image = queryDocumentSnapshot.getString(Constants.KEY_IMAGE);
-                            user.token = queryDocumentSnapshot.getString(Constants.KEY_FCM_TOKEN);
-                            userList.add(user);
                         }
-                        if (userList.size() > 0) {
-                            UserAdapter userAdapter = new UserAdapter(userList);
-                            binding.usersRecyclerView.setAdapter(userAdapter);
-                            binding.usersRecyclerView.setVisibility(View.VISIBLE);
-                        } else {
-                            showErrorMessage();
-                        }
-                    } else {
+                            if (users.size() > 0){
+                                UserAdapter userAdapter = new UserAdapter(users);
+                                binding.usersRecyclerView.setAdapter(userAdapter);
+                                binding.usersRecyclerView.setVisibility(View.VISIBLE);
+                            }else{
+                                showErrorMessage();
+                            }
+                        }else{
                         showErrorMessage();
                     }
                 });
     }
 
-    private void showErrorMessage() {
-        binding.textErrorMessage.setText(String.format("@s", "Пользователь недоступен"));
+    private void showErrorMessage(){
+        binding.textErrorMessage.setText(String.format("%s", "No user available"));
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
-    private void load(Boolean isLoad) {
-        if (isLoad) {
+    private void loading(Boolean isLoad){
+        if(isLoad){
             binding.progressBar.setVisibility(View.VISIBLE);
-        } else {
+        }else{
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
     }

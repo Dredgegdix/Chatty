@@ -1,26 +1,25 @@
 package com.example.chatty;
 
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatty.databinding.ItemUserContainerBinding;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+import java.util.List;
 
-    private final List<User> userList;
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder>{
 
-    public UserAdapter(List<User> userList)  {
-        this.userList = userList;
+    private final List<User> users;
+
+    public UserAdapter(List<User> users) {
+        this.users = users;
     }
 
     @NonNull
@@ -34,36 +33,33 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return new UserViewHolder(itemUserContainerBinding);
     }
 
-
     @Override
-    public void onBindViewHolder(@NonNull UserAdapter.UserViewHolder holder, int position) {
-        holder.setUserData(userList.get(position));
+    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+        holder.setUserData(users.get(position));
     }
-
 
     @Override
     public int getItemCount() {
-        return userList.size();
+        return users.size();
     }
 
-    class UserViewHolder extends RecyclerView.ViewHolder {
+    class UserViewHolder extends RecyclerView.ViewHolder{
 
         ItemUserContainerBinding binding;
 
-        UserViewHolder(ItemUserContainerBinding itemUserContainerBinding) {
+        UserViewHolder(ItemUserContainerBinding itemUserContainerBinding){
             super(itemUserContainerBinding.getRoot());
             binding = itemUserContainerBinding;
         }
 
-        void setUserData(User user) {
-            binding.textName.setText(user.username);
+        void setUserData(User user){
+            binding.textName.setText(user.name);
             binding.textEmail.setText(user.email);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
         }
     }
 
-
-    private Bitmap getUserImage(String encodedImage) {
+    private Bitmap getUserImage(String encodedImage){
         byte [] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
