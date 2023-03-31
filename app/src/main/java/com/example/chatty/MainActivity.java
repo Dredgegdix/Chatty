@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.view.InflateException;
 import android.widget.Toast;
 
 import com.example.chatty.databinding.ActivityMainBinding;
@@ -27,17 +26,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            binding = ActivityMainBinding.inflate(getLayoutInflater());
-            setContentView(binding.getRoot());
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (InflateException e) {
-            e.printStackTrace();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
-
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         preference = new Preference(getApplicationContext());
         loadUserDetails();
         getToken();
@@ -45,28 +35,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        try {
-            binding.exitImage.setOnClickListener(v -> exit());
-            binding.createNewChat.setOnClickListener(v ->
+        binding.exitImage.setOnClickListener(v -> exit());
+        binding.createNewChat.setOnClickListener(v ->
                     startActivity(new Intent(getApplicationContext(), UserActivity.class)));
-        }  catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
     }
 
     private void loadUserDetails() {    // Подгрузка данных пользователя
-        try {
-            binding.textName.setText(preference.getString(Constants.KEY_NAME));
-            byte [] bytes = Base64.decode(preference.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            binding.profileImage.setImageBitmap(bitmap);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
+        binding.textName.setText(preference.getString(Constants.KEY_NAME));
+        byte [] bytes = Base64.decode(preference.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        binding.profileImage.setImageBitmap(bitmap);
     }
 
     private void showToast(String message){   // Удобные тосты
