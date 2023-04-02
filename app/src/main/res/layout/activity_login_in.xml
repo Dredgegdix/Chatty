@@ -8,13 +8,16 @@
     android:overScrollMode="never"
     android:padding="@dimen/_24sdp"
     android:scrollbars="none"
-    android:background="@color/whiter"
+    android:background="@drawable/background"
     tools:context=".LoginInActivity">
 
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_270sdp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/background_for_glass_effect"
         android:orientation="vertical">
 
         <TextView
@@ -23,8 +26,10 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:text="@string/welcome"
             android:textSize="@dimen/_18ssp"
-            android:textColor="@color/forTxt"
+            android:textColor="@color/black"
             android:textStyle="bold"/>
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,6 +47,8 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_40sdp"
             android:background="@drawable/backgroundinput"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:hint="@string/email"
             android:importantForAutofill="no"
             android:imeOptions="actionNext"
@@ -55,6 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:background="@drawable/backgroundinput"
             android:hint="@string/password"
             android:importantForAutofill="no"
@@ -74,12 +83,14 @@
                 android:id="@+id/btnLoginIn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:text="@string/signIn"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
-                app:cornerRadius="@dimen/_8sdp"/>
+                app:cornerRadius="@dimen/_8sdp" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -94,6 +105,7 @@
             android:id="@+id/createNewAccountTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="@string/createAccount"
             android:textColor="@color/forTxt"
