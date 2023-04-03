@@ -16,7 +16,7 @@
         android:layout_width="@dimen/_270sdp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:background="@drawable/background_for_glass_effect"
         android:orientation="vertical">
 
@@ -26,7 +26,7 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:text="@string/welcome"
             android:textSize="@dimen/_18ssp"
-            android:textColor="@color/black"
+            android:textColor="@color/forTxt"
             android:textStyle="bold"/>
 
 
@@ -38,17 +38,22 @@
             android:text="@string/loginInForResult"
             android:textColor="@color/forTxt"
             android:textSize="@dimen/_15ssp"
-
             android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <EditText
             android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_40sdp"
-            android:background="@drawable/backgroundinput"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:textColorHint="@color/forTxt"
             android:hint="@string/email"
             android:importantForAutofill="no"
             android:imeOptions="actionNext"
@@ -64,7 +69,8 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
-            android:background="@drawable/backgroundinput"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:textColorHint="@color/forTxt"
             android:hint="@string/password"
             android:importantForAutofill="no"
             android:imeOptions="actionDone"
@@ -72,6 +78,8 @@
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:textSize="@dimen/_13ssp"/>
+
+        </LinearLayout>
         
         <FrameLayout
             android:layout_width="match_parent"
@@ -82,12 +90,13 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLoginIn"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@drawable/backgroundinput"
                 android:text="@string/signIn"
-                android:textColor="@color/white"
+                android:textColor="@color/forTxt"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp" />
