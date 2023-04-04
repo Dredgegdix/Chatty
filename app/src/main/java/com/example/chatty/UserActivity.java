@@ -41,15 +41,24 @@ public class UserActivity extends AppCompatActivity implements UserListener{
             }
         });
         binding.searchImg.setOnClickListener(v -> {
-            binding.linerLayoutSearch.setVisibility(View.VISIBLE);
-            binding.searchImg.setVisibility(View.GONE);
-            binding.searchBack.setVisibility(View.VISIBLE);
+            onClickSearchImg();
         });
         binding.searchBack.setOnClickListener(v -> {
-            binding.linerLayoutSearch.setVisibility(View.GONE);
-            binding.searchBack.setVisibility(View.GONE);
-            binding.searchImg.setVisibility(View.VISIBLE);
+            onClickSearchBack();
         });
+    }
+
+    private void onClickSearchImg(){
+        binding.linerLayoutSearch.setVisibility(View.VISIBLE);
+        binding.searchImg.setVisibility(View.GONE);
+        binding.searchBack.setVisibility(View.VISIBLE);
+        binding.search.setText(null);
+    }
+
+    private void onClickSearchBack(){
+        binding.linerLayoutSearch.setVisibility(View.GONE);
+        binding.searchBack.setVisibility(View.GONE);
+        binding.searchImg.setVisibility(View.VISIBLE);
     }
 
     private void showToast(String toast){
