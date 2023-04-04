@@ -12,6 +12,6 @@
     <string name="register">Зарегестрироваться</string>
     <string name="loginIn">Войти в аккаунт</string>
     <string name="select_user">Выберите пользователя</string>
-    <string name="type_a_message">type a message</string>
+    <string name="type_a_message">Введите сообщение</string>
     <string name="search">Поиск</string>
 </resources>

@@ -40,7 +40,16 @@ public class UserActivity extends AppCompatActivity implements UserListener{
                 searchUser();
             }
         });
-        binding.searchImg.setOnClickListener(v -> binding.linerLayoutSearch.setVisibility(View.VISIBLE));
+        binding.searchImg.setOnClickListener(v -> {
+            binding.linerLayoutSearch.setVisibility(View.VISIBLE);
+            binding.searchImg.setVisibility(View.GONE);
+            binding.searchBack.setVisibility(View.VISIBLE);
+        });
+        binding.searchBack.setOnClickListener(v -> {
+            binding.linerLayoutSearch.setVisibility(View.GONE);
+            binding.searchBack.setVisibility(View.GONE);
+            binding.searchImg.setVisibility(View.VISIBLE);
+        });
     }
 
     private void showToast(String toast){
